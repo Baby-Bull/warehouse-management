@@ -1,0 +1,71 @@
+.body {
+    flex-direction: column ;
+    background-color: #F4F6F8;
+    padding: 0px 20px;
+    // justify-content: space-between;
+}
+
+.headerSupply {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px;
+   
+    .nameSupply {
+        display: flex;
+        
+    }
+    .debt {
+
+    }
+}
+.Supply {
+    
+    border: 1px solid #e4e4e4 ;
+    border-radius: 5px;
+    padding: 20px 10px;
+    background-color: #FFFFFF;
+    // margin-top: 40px;
+    .title {
+        font-weight: 600;
+        padding-bottom: 10px;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    .selectSupply-info {
+        display: flex;
+        flex-direction: row;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 1px rgb(209, 209, 209) solid;
+        border-radius: 5px;
+        align-items: center;
+        .icon-search{   
+            margin-left: 10px;
+        }
+        .selectSupply {
+            width: 95%;
+            height: 40px;
+            border-radius: 5px;
+            z-index: 1;   
+          }
+    }
+}
+
+.detail-supplier {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    line-height: 2rem;
+    .MuiTypography-root {
+        line-height: 2rem;
+    }
+    .title-add {
+        font-weight:600;
+    }
+    .export-address {
+        width: 55%;   
+    }
+    .billing-ex-add {
+        width: 45%;
+    }
+}

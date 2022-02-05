@@ -1,0 +1,14 @@
+Tạo trigger: Khi thêm 1 product, tự động thêm 1 variant
+Tạo trigger: Khi tạo 1 checksheet, khởi tạo số lượng tồn chi nhánh
+
+Tạo trigger: Sau khi insert import_receipts, update imported_status của order thành "Đã nhập kho"
+Tạo trigger về payment_invoice:
+	- Trước khi insert vào paymen_invoice, kiểm tra xem amount + order.paid_amount có <= total_amount. Nếu không, báo lỗi
+	- Sau khi insert payment_invoice:
+		+ Cập nhật order.paid_amount = order.paid_amount + amont
+		+ Nếu order.paid_amount < total_amount -> transaction_status = "Thanh Toán một phần"
+		  Nếu order.paid_amount < total_amount -> transaction_status = "Đã thanh toán"
+
+Tạo trigger: Tìm hiểu update công nợ (debt) của bangr suppliers
+	- Khi tạo đơn thanh toán, debt tăng theo giá đơn (cửa hàng nợ nhà cung cấp nhiều tiền hơn)
+	- Khi thanh toán một phần hoặc thanh toán đầy đủ, debt giảm theo tiền thanh toán

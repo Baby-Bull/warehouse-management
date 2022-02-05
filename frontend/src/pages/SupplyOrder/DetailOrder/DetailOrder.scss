@@ -1,0 +1,303 @@
+.body {
+    // flex-direction: column ;#27274b 
+    background-color: #F4F6F8;
+    padding: 10px 10px;
+    position: relative;
+    display: flex;
+    // justify-content: space-between;
+}
+.header-page-detail {
+    width: calc(100% - 300px);
+    .link-update {
+        text-decoration: none;
+    }
+}
+.test {
+    width: calc(100% - 300px);
+    display: inline-block;
+}
+.back {
+    display: flex;
+    // margin-bottom: 22px;
+    cursor: pointer;
+    :hover {
+        color: #007BFF;
+    }
+    
+}
+
+.supplier {
+    border: 1px solid #e4e4e4 ;
+    border-radius: 5px;
+    padding: 10px 10px;
+    background-color: #FFFFFF;
+    .title {
+        font-weight: 600;
+        font-size: 14px;
+        padding-bottom: 10px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+}
+.headerSupply {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px;
+   
+    .nameSupply {
+        display: flex;
+        
+    }
+    .debt {
+
+    }
+}
+
+.product {
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #e4e4e4 ;
+    border-radius: 5px;
+    .title {
+        font-weight: 600;
+        font-size: 14px;
+        padding-bottom: 10px;
+        margin-left: 20px;
+        margin-top: 15px;
+    }
+    .header-Product {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 20px;
+        border: 1px solid #9b9999;
+        background-color: #F4F6F8;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .bodyProducts {
+        padding: 0;
+        background-color: #ffffff;
+        display: inline;
+        .product-item {
+            width: 100%;
+            min-height: 50px;
+            border: 1px solid rgb(187, 187, 187);
+           
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            // align-items: ;
+        }
+        .pay-info {
+            width: 300px;
+            margin-left: calc(100% - 300px);
+            position: relative;
+            // border: 1px solid black;
+            right: 0;
+            padding-top: 15px;
+            .pay-info-item {
+                display: flex;
+                justify-content: space-between;
+                height: 30px;
+                padding-right: 10px;
+            }
+        }
+    }
+}
+.payment {
+    margin-top: 20px;
+    width: 100%;
+    .header-payment {
+        display: flex;
+        justify-content: space-between;
+        .header-payment-info {
+            width: 65%;
+        }
+        
+    }
+    .btn-payment {
+        width: 30%;
+        text-align: center;
+    }
+    .body-payment {
+        display: inline;
+        // justify-content: space-between;
+        .body-payment-info {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .payment-type {
+                width: 50%;
+            }
+            .payment-amount {
+                width: 50%;
+                .MuiTextField-root {
+                    height: 40px;
+                }
+                .MuiOutlinedInput-root {
+                    height: 40px;
+                }
+            }
+        }
+        
+    }
+    .history-paid {
+        display: inline;
+        width: 100%;
+        .css-ha3bif-MuiTimelineItem-root {
+            min-height: 45px;
+        }
+        .css-ha3bif-MuiTimelineItem-root::before {
+            content: none;
+        }
+    }
+}
+.import {
+    margin-top: 20px;
+    width: 100%;
+    .header-import {
+        display: flex;
+        justify-content: space-between;
+        .btn-import {
+            width: 30%;
+            text-align: center;
+        }
+    }
+    .history-import {
+        .body-history-import {
+            .css-ha3bif-MuiTimelineItem-root {
+                min-height: 45px;
+            }
+            .css-ha3bif-MuiTimelineItem-root::before {
+                content: none;
+            }
+        }
+    }
+    .modal-import {
+        #modal-modal-description {
+            .header-Product {
+                display: flex;
+                width: 100%;
+                // background-color: #9b9999;
+            }
+        }
+       
+    }
+}
+
+.return {
+    .history-import {
+        .body-history-import {
+            .css-ha3bif-MuiTimelineItem-root {
+                min-height: 45px;
+            }
+            .css-ha3bif-MuiTimelineItem-root::before {
+                content: none;
+            }
+        }
+    }
+}
+
+.detail-supplier {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    line-height: 2rem;
+    .MuiTypography-root {
+        line-height: 2rem;
+    }
+    .title-add {
+        font-weight:600;
+    }
+    .export-address {
+        width: 55%;   
+    }
+    .billing-ex-add {
+        width: 45%;
+    }
+}
+
+.more-info {
+    position: absolute;
+    right: 24px;
+    // top: 0;
+    z-index: 100;
+    width: 290px;
+    // background-color: #FFFFFF;
+    // padding-left: 30px;
+   
+    .time-line {
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .more-info-detail{
+        background-color: #FFFFFF;
+        border: 1px solid rgb(224, 224, 224);
+        border-radius: 5px;
+        width: 95%;
+        padding-bottom: 20px;
+        .title {
+            font-size: 15px;
+            font-weight: 700;
+            padding-top: 15px;
+            padding-left: 20px;
+        }
+        .code-supply-order{
+            // background-color: #9e9e9e;
+            // width: 80%;
+            padding-top: 5px;
+            padding-left: 20px;
+            height: 70px;
+            .title{
+               
+                font-weight: 450;
+                padding-left: 0px;
+                // margin: 15px 15px;
+            }
+            .info {
+                margin-top: 10px;
+                width: 90%;
+            }
+           
+        }
+        .time-supply-order{
+            .title{
+               
+                font-weight: 450;
+                padding-left: 20px;
+                margin-bottom: 10px;
+                
+            }
+            .time {
+               margin-left: 20px;
+            }
+        }
+        .note {
+            margin-top: 10px;
+            .title {
+              
+                font-weight: 450;
+                padding-top: 15px;
+                padding-left: 20px;
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+            .content-note {
+                margin-left: 20px;
+                width: 85%;
+                height: 80px;
+                border-color: #cfcfcf;
+                border-radius: 5px;
+            }
+        }
+        // .btn-order {
+        //     margin-left: 20px;
+        //     width: 85%;
+        //     margin-top: 20px;
+        //     height: 40px;
+        //     background-color: #007BFF ;
+        //     color: #FFFFFF;
+        //     font-size: 16px;
+        // }
+    }
+}

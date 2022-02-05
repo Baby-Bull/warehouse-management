@@ -1,0 +1,14 @@
+.body {
+
+}
+.body-content {
+    width: 100%;
+    display: flex;
+    .info-return {
+        width: calc(100% - 320px);
+        margin-right: 20px;
+    }
+    .detail {
+        width: 280px;
+    }
+}

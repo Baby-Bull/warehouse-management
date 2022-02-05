@@ -1,0 +1,42 @@
+.drawer {
+    font-size: 16px !important;
+    background: #27274b;
+    .leftbar_header {
+        background: #27274b;
+        a {
+            height: 100%;
+            .logo_image {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .button_open {
+            color: white;
+            margin-right: 1.2em;
+        }
+        .button_close {
+            color: white;
+            margin-left: 0.2em;
+        }
+    }
+    .nav_link {
+        text-decoration: none;
+        color: white;
+    }
+
+    .nav_leftbar {
+        background-color: #27274b;
+        color: white;
+        height: 100%;
+        .nav_leftbar_item {
+            border-bottom: 1px rgba(255, 255, 255, 0.302) solid;
+            .nav_item_icon {
+                color: white;
+            }
+        }
+    }
+}
+.box_content {
+    width: 100% !important;
+    overflow: hidden;
+}
