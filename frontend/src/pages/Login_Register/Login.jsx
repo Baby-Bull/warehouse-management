@@ -44,7 +44,7 @@ export default function Login() {
             </div>
             <div className="container">
                 <div className="img">
-                    <img className='logo_image' src="https://www.sapo.vn/Themes/Portal/Default/StylesV2/images/logo/Sapo-logo.svg" alt="" />
+                    <img className='logo_image' src="./images/logo2.PNG" alt="" />
                 </div>
                 <div className="screen">
                     <div className="screen__content">
