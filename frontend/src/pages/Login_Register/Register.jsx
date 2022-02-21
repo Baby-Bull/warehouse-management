@@ -27,7 +27,7 @@ export default function Register() {
             setStateAlert({ severity: "error", variant: "standard", open: true, content: "Yêu cầu điền tên đăng ký, email và mật khẩu" })
         } else {
             try {
-                await axios.post("http://localhost:9191/register", newAdmin);
+                await axios.post("https://storage-management-backend-ndt.herokuapp.com/register", newAdmin);
                 history.push("/login");
             } catch (error) {
                 setStateAlert({ severity: "error", variant: "filled", open: true, content: error.response.data })

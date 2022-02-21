@@ -26,7 +26,7 @@ export default function Login() {
             setStateAlert({ severity: "error", variant: "standard", open: true, content: "Yêu cầu điền tên đăng nhập và mật khẩu" })
         } else {
             try {
-                const res = await axios.post("http://localhost:9191/login", inputlogin);
+                const res = await axios.post("https://storage-management-backend-ndt.herokuapp.com/login", inputlogin);
                 dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
                 window.location.replace("/trang-chu");
                 // history.push("/san-pham")
