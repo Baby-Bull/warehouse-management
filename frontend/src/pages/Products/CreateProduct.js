@@ -172,9 +172,9 @@ function CreateProduct({ setStateAlert }) {
     let wholeSalePrice = product.wholeSalePrice;
     let retailPrice = product.retailPrice;
 
-    if(colors.length !== 0) colorsArray = colors;
-    if(materials.length !== 0) materialsAray = materials;
-    if(sizes.length !== 0) sizesArray = sizes;
+    if (colors.length !== 0) colorsArray = colors;
+    if (materials.length !== 0) materialsAray = materials;
+    if (sizes.length !== 0) sizesArray = sizes;
     colorsArray.forEach(color => {
       materialsAray.forEach(material => {
         sizesArray.forEach(size => {
@@ -267,6 +267,7 @@ function CreateProduct({ setStateAlert }) {
 
   return (
     <Box
+      className="createProduct-main-content"
       px={4}
       backgroundColor="#F4F6F8"
       minHeight="90vh"
@@ -312,9 +313,10 @@ function CreateProduct({ setStateAlert }) {
           </Button>
         </Box>
       </Box>
-      <Grid py={2} px={1} container spacing={3}>
-        <Grid item xs={8}>
+      <Grid className="form-main-createProduct" py={2} px={1} container spacing={3}>
+        <Grid className="info-main-createProduct" item xs={8}>
           <Box
+            className="info-main-item"
             py={2}
             px={1}
             display="flex"
@@ -386,6 +388,7 @@ function CreateProduct({ setStateAlert }) {
             </Box>
           </Box>
           <Box
+            className="info-main-item"
             py={2}
             px={1}
             mt={3}
@@ -448,6 +451,7 @@ function CreateProduct({ setStateAlert }) {
             </Box>
           </Box>
           <Box
+            className="info-main-item"
             py={2}
             px={1}
             mt={3}
@@ -549,6 +553,7 @@ function CreateProduct({ setStateAlert }) {
             </Box>
           </Box>
           <Box
+            className="info-main-item"
             py={2}
             px={1}
             mt={3}
@@ -593,6 +598,7 @@ function CreateProduct({ setStateAlert }) {
             </Box>
           </Box>
           <Box
+            className="info-main-item"
             py={2}
             px={1}
             mt={3}
@@ -640,6 +646,7 @@ function CreateProduct({ setStateAlert }) {
         </Grid>
         <Grid item xs={4}>
           <Box
+            className="bunusInfo-main-createProduct"
             py={2}
             px={1}
             display="flex"
@@ -725,13 +732,14 @@ function CreateProduct({ setStateAlert }) {
           </Box>
         </Grid>
         {variants.length > 0 ?
-          <Grid item xs={12}>
+          <Grid className="preview-variant-table" item xs={12}>
             <Box
               py={2}
               px={1}
               display="flex"
               flexDirection="column"
               backgroundColor="white"
+              sx={{ width: "fit-content" }}
             >
               <Typography variant="h6" id="tableTitle" px={1}>
                 Phiên bản ({variants.length})

@@ -1,120 +1,116 @@
-.body {
-    // flex-direction: column ;
-    background-color: #F4F6F8;
-    padding: 10px 10px;
-    position: relative;
-    display: flex;
-    // justify-content: space-between;
-}
-.test {
-    width: calc(100% - 300px);
-}
-.back {
-    display: flex;
-    margin-top: 22px;
-    cursor: pointer;
-    :hover {
-        color: #007BFF;
-    }
-    
-}
-
-
-
-
-.more-info {
-    position: absolute;
-    right: 24px;
-    // top: 0;
-    z-index: 100;
-    width: 290px;
-    // background-color: #FFFFFF;
-    // padding-left: 30px;
-   
-    .time-line {
-        margin-top: 15px;
-        margin-bottom: 20px;
-    }
-    .more-info-detail-created{
-        background-color: #FFFFFF;
-        border: 1px solid rgb(224, 224, 224);
-        border-radius: 5px;
-        width: 95%;
-        padding-bottom: 20px;
-        .title {
-            font-size: 15px;
-            font-weight: 700;
-            padding-top: 15px;
-            padding-left: 20px;
-        }
-        .code-supply-order{
-            // background-color: #9e9e9e;
-            // width: 80%;
-            padding-top: 5px;
-            padding-left: 20px;
-            height: 120px;
-            .title{
-                // font-size: 12px;
-                font-weight: 400;
-                padding-left: 0px;
-                // margin: 15px 15px;
-            }
-            .info {
-                margin-top: 10px;
-                width: 90%;
-            }
-            .MuiOutlinedInput-root {
-                height: 40px;
+.supplyOrder-main-content {
+    background-color: #f4f6f8;
+    display: grid;
+    .navig {
+        display: block;
+        .back {
+            display: flex;
+            cursor: pointer;
+            margin-left: 2em;
+            margin-bottom: 1em;
+            &:hover {
+                color: #007bff;
             }
         }
-        .time-supply-order{
-            .title{
-                // font-size: 12px;
-                font-weight: 400;
-                padding-left: 20px;
-                margin-bottom: 10px;
-                
-            }
-            .time {
-                .MuiFormControl-root {
-                    margin-left: 20px;
-                    width: 85%;
-                    height: 40px;
+        .time-line {
+            width: 100% !important;
+        }
+    }
+    .activity-order {
+        width: 100%;
+        display: flex;
+        .test {
+            width: calc(100% - 300px);
+        }
+
+        .more-info {
+            z-index: 100;
+            .more-info-detail-created {
+                background-color: #ffffff;
+                border: 1px solid rgb(224, 224, 224);
+                border-radius: 5px;
+                width: 100%;
+                padding-bottom: 20px;
+                padding-left: 2em;
+                .title {
+                    font-size: 15px;
+                    font-weight: 700;
+                    padding-top: 15px;
+                }
+                .code-supply-order {
+                    width: 90%;
+                    padding-top: 5px;
+                    height: 120px;
+                    .title {
+                        font-weight: 400;
+                    }
+                    .info {
+                        width: 100%;
+                        margin-top: 10px;
+                    }
                     .MuiOutlinedInput-root {
                         height: 40px;
                     }
                 }
+                .time-supply-order {
+                    .title {
+                        font-weight: 400;
+                        margin-bottom: 10px;
+                    }
+                    .time {
+                        .MuiFormControl-root {
+                            height: 40px;
+                            .MuiOutlinedInput-root {
+                                height: 40px;
+                            }
+                        }
+                    }
+                }
+                .note {
+                    margin-top: 10px;
+                    .title {
+                        font-size: 12px;
+                        font-weight: 450;
+                        padding-top: 15px;
+                        margin-bottom: 10px;
+                    }
+                    .content-note {
+                        width: 90%;
+                        height: 80px;
+                        border-color: #cfcfcf;
+                        border-radius: 5px;
+                    }
+                }
+                .btn-order {
+                    margin-right: -2.4em !important;
+                    background-color: #007bff;
+                    color: #ffffff;
+                    font-size: 12px;
+                }
             }
-        }
-        .note {
-            margin-top: 10px;
-            .title {
-                font-size: 12px;
-                font-weight: 450;
-                padding-top: 15px;
-                padding-left: 20px;
-                margin-bottom: 10px;
-            }
-            .content-note {
-                margin-left: 20px;
-                width: 85%;
-                height: 80px;
-                border-color: #cfcfcf;
-                border-radius: 5px;
-            }
-        }
-        .btn-order {
-            margin-left: 20px;
-            width: 85%;
-            margin-top: 20px;
-            height: 40px;
-            background-color: #007BFF ;
-            color: #FFFFFF;
-            font-size: 16px;
         }
     }
 }
-
 .link-detail {
     text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+    .supplyOrder-main-content {
+        padding: 1em 0.3em !important;
+        .activity-order {
+            display: block;
+            .test {
+                width: 100%;
+            }
+            .more-info {
+                width: 100%;
+                right: 0;
+                padding: 2em;
+            }
+            .btn-order {
+                width: 100%;
+            }
+        }
+    }
 }

@@ -5,3 +5,26 @@
     text-decoration: underline;
     cursor: pointer;
 }
+.preview-variant-table {
+    overflow: scroll;
+}
+.makeStyles-sticky-3 {
+    position: relative;
+}
+
+@media screen and (max-width: 500px) {
+    .createProduct-main-content {
+        padding: 1em 0.3em !important;
+        .form-main-createProduct {
+            display: grid;
+            .info-main-createProduct {
+                .info-main-item {
+                    width: 95vw;
+                }
+            }
+            .bunusInfo-main-createProduct {
+                width: 95vw;
+            }
+        }
+    }
+}

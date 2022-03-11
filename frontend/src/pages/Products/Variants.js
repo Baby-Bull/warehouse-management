@@ -18,20 +18,21 @@ import "./products.scss";
 import VariantAPI from "../../api/VariantAPI";
 import CategoryAPI from "../../api/CategoryAPI";
 import { CSVLink } from "react-csv";
+import "./variants.scss";
 
 const headers = [
-    { label: "Mã phiên bản", key: 'code' },
-    { label: "Tên phiên bản", key: 'variantName' },
-    { label: "Đơn vị tính", key: 'unit' },
-    { label: "Kích thước", key: 'size' },
-    { label: "Chất liệu", key: 'material' },
-    { label: "Màu sắc", key: 'color' },
-    { label: "Giá bán lẻ", key: 'retailPrice' },
-    { label: "Giá bán buôn", key: 'wholeSalePrice' },
-    { label: "Giá nhập", key: 'originalPrice' },
-    { label: "Tồn kho", key: 'inventoryQuantity' },
-    { label: "Có thể bán", key: 'sellableQuantity' },
-    { label: "Trạng thái", key: 'sellableStatus' }
+  { label: "Mã phiên bản", key: 'code' },
+  { label: "Tên phiên bản", key: 'variantName' },
+  { label: "Đơn vị tính", key: 'unit' },
+  { label: "Kích thước", key: 'size' },
+  { label: "Chất liệu", key: 'material' },
+  { label: "Màu sắc", key: 'color' },
+  { label: "Giá bán lẻ", key: 'retailPrice' },
+  { label: "Giá bán buôn", key: 'wholeSalePrice' },
+  { label: "Giá nhập", key: 'originalPrice' },
+  { label: "Tồn kho", key: 'inventoryQuantity' },
+  { label: "Có thể bán", key: 'sellableQuantity' },
+  { label: "Trạng thái", key: 'sellableStatus' }
 ];
 
 export default function Variants({ setStateAlert }) {
@@ -157,7 +158,7 @@ export default function Variants({ setStateAlert }) {
   };
 
   return (
-    <Box backgroundColor="#F4F6F8" pt={2} pb={4} px={4} minHeight="91vh">
+    <Box className="variants-main-content" backgroundColor="#F4F6F8" pt={2} pb={4} px={4} minHeight="91vh">
       <Box display="flex" flexDirection="column">
         <Box
           display="flex"
@@ -219,10 +220,10 @@ export default function Variants({ setStateAlert }) {
                 categoryFilter !== ""
                   ? undefined
                   : () => (
-                      <Typography sx={{ color: "#aaa" }}>
-                        Loại sản phẩm
-                      </Typography>
-                    )
+                    <Typography sx={{ color: "#aaa" }}>
+                      Loại sản phẩm
+                    </Typography>
+                  )
               }
             >
               <MenuItem value="">

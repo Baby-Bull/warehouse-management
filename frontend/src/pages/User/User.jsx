@@ -29,7 +29,7 @@ const columns = [
     { id: 'activity ', label: 'Thao tac' },
 ];
 
-const checkRole = (JSON.parse(sessionStorage.getItem("token"))?.role[0].name == "ADMIN");
+const checkRole = (JSON.parse(sessionStorage.getItem("token"))?.role[0].name === "ADMIN");
 
 export default function User() {
     const history = useHistory();
@@ -96,10 +96,10 @@ export default function User() {
             password: newUserPassword,
             role: newUserRole
         }
-        if (newUsername == "" || newUserEmail == "" || newUserPassword == "") {
+        if (newUsername === "" || newUserEmail === "" || newUserPassword === "") {
             setStateAlert({ severity: "error", variant: "standard", open: true, content: "Yêu cầu điền tên đăng ký, email và mật khẩu" })
         } else {
-            if (newUserPassword != newUserPasswordAgain) {
+            if (newUserPassword !== newUserPasswordAgain) {
                 setStateAlert({ severity: "error", variant: "filled", open: true, content: "Mật khẩu và xác nhận mật khẩu không khớp" })
             } else {
                 try {

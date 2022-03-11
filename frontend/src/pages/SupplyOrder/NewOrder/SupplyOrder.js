@@ -91,32 +91,14 @@ export default function SupplyOrder({ setStateAlert }) {
                     content: err.response.data,
                 });
             });
-        // history.push("/nhap-hang");
-
-
-
-        // } catch (err) {
-        //     setStateAlert({
-        //         severity: "error",
-        //         variant: "filled",
-        //         open: true,
-        //         content: err.response.data,
-        //       });
-        // }
 
     }
 
-    React.useEffect(() => {
-
-    }, [])
-    // console.log(product);
-
-    // console.log(moment(date).format('YYYY-MM-DD'));
     return (
 
         <div>
-            <Box py={2} px={5} sx={{ flexGrow: 1, minHeight: "91vh" }} className="body">
-                <Box sx={{width: "100%", display: "flex", justifyContent: "space-between"}}>
+            <Box py={2} px={5} sx={{ flexGrow: 1, minHeight: "91vh" }} className="supplyOrder-main-content">
+                <Box sx={{ width: "100%" }} className="navig">
                     <Box className="back" onClick={history.goBack}>
                         <ArrowBackIosIcon />
                         <Box>Đơn nhập hàng</Box>
@@ -131,7 +113,7 @@ export default function SupplyOrder({ setStateAlert }) {
                         </Stepper>
                     </Box>
                 </Box>
-                <Box sx={{width: "100%", display: "flex"}} mt={2}>
+                <Box className="activity-order" mt={2}>
                     <Box className="test"  >
                         <SupplySelect setSupplier={setSupplier} />
                         <ProductSelect setProduct={setProduct} setDiscountFinal={setDiscountFinal} />
@@ -164,10 +146,12 @@ export default function SupplyOrder({ setStateAlert }) {
                                 <textarea className="content-note" onChange={(e) => setDescription(e.target.value)}></textarea>
                             </Box>
 
-                            {/* <Button variant="outlined" className="btn-order" onClick={SubmitOrder}>Đặt hàng</Button> */}
+                            <Box sx={{ padding: "3em 0em 0em 0em!important" }}>
+                                <Button variant="contained" className="btn-order" onClick={SubmitOrder}>Đặt hàng
+                                </Button>
+                            </Box>
 
                         </Box>
-                        <Button variant="contained" className="btn-order" onClick={SubmitOrder} sx={{ marginTop: "100px", position: "fixed" }}>Đặt hàng</Button>
                     </Box>
                 </Box>
 

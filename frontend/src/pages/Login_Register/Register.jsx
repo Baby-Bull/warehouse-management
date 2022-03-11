@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import "./register.scss";
 import { Link, useHistory } from "react-router-dom";
-import Login_RegisterAPI from '../../api/Login_RegisterAPI';
+import { AuthContext } from '../../contextAPI/AuthContext';
+import { CircularProgress } from "@material-ui/core";
 import axios from 'axios';
 import { Alert, Snackbar } from '@mui/material';
 
@@ -13,10 +14,12 @@ export default function Register() {
     const username = useRef();
     const password = useRef();
     const email = useRef();
+    const { user, isFetching, error, dispatch } = useContext(AuthContext);
     const history = useHistory();
 
     const RegisterHandle = async (e) => {
         e.preventDefault();
+        dispatch({ type: "LOGIN_START" });
         const newAdmin = {
             username: username.current.value,
             email: email.current.value,
@@ -27,10 +30,12 @@ export default function Register() {
             setStateAlert({ severity: "error", variant: "standard", open: true, content: "Yêu cầu điền tên đăng ký, email và mật khẩu" })
         } else {
             try {
-                await axios.post("https://storage-management-backend-ndt.herokuapp.com/register", newAdmin);
+                const res = await axios.post("https://storage-management-backend-ndt.herokuapp.com/register", newAdmin);
+                dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
                 history.push("/login");
             } catch (error) {
                 setStateAlert({ severity: "error", variant: "filled", open: true, content: error.response.data })
+                dispatch({ type: "LOGIN_FAILURE", payload: error });
             }
         }
     }
@@ -41,9 +46,9 @@ export default function Register() {
                 <img className='logo_image' src="https://www.sapo.vn/Themes/Portal/Default/StylesV2/images/home/bg-banner-tet-1280.png?v=7" alt="" />
             </div>
             <div className="container">
-                <div className="img">
+                {/* <div className="img">
                     <img className='logo_image' src="./images/logo2.PNG" alt="" />
-                </div>
+                </div> */}
                 <div className="screen">
                     <div className="screen__content">
                         <form onSubmit={RegisterHandle} className="login">
@@ -60,8 +65,12 @@ export default function Register() {
                                 <input ref={password} type="password" className="login__input" placeholder="Mật khẩu" />
                             </div>
                             <button type='submit' style={{ marginBottom: "1.5em" }} className="button login__submit">
-                                <span className="button__text">Đăng ký</span>
-                                <i className="button__icon fas fa-chevron-right" />
+                                {isFetching ? <CircularProgress color="white" size="20px" /> :
+                                    <>
+                                        <span className="button__text">Đăng ký</span>
+                                        <i className="button__icon fas fa-chevron-right" />
+                                    </>
+                                }
                             </button>
                             <Link to={"/login"} className='back_to_login'><strong>Bạn đã có tài khoản</strong></Link>
                         </form>

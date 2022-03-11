@@ -4,7 +4,7 @@ import * as React from 'react';
 import { CSVLink } from "react-csv";
 // import { Box, Autocomplete, Button, TextField, Divider, InputAdornment } from '@mui/material'
 import { Download, Upload, AddCircle, Search, FilterAltOutlined, FilterAlt } from '@mui/icons-material';
-import { Box, TextField, InputAdornment,Autocomplete, Button, Divider, Card, CardContent, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material'
+import { Box, TextField, InputAdornment, Autocomplete, Button, Divider, Card, CardContent, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material'
 import { Link } from 'react-router-dom'
 import TableOrder from '../../../components/table/TableListOrder';
 import UnlockAccess from '../../../components/roleBasedRender/UnlockAccess'
@@ -23,20 +23,20 @@ export default function ListOrder() {
 
     ];
     const statuss = [
-        {name: 'Đang giao dịch'},
-        {name: 'Đã hoàn thành'}
+        { name: 'Đang giao dịch' },
+        { name: 'Đã hoàn thành' }
     ]
     const payments = [
-        {name: 'Chưa thanh toán'},
-        {name: 'Thanh toán một phần'},
-        {name: 'Đã thanh toán'}
+        { name: 'Chưa thanh toán' },
+        { name: 'Thanh toán một phần' },
+        { name: 'Đã thanh toán' }
     ]
     const imports = [
-        {name: 'Chờ nhập kho'},
-        {name: 'Nhập kho một phần'},
-        {name: 'Đã nhập kho'},
-        {name: 'Hoàn trả một phần'},
-        {name: 'Hoàn trả toàn bộ'}
+        { name: 'Chờ nhập kho' },
+        { name: 'Nhập kho một phần' },
+        { name: 'Đã nhập kho' },
+        { name: 'Hoàn trả một phần' },
+        { name: 'Hoàn trả toàn bộ' }
     ]
     const [statusFilter, setStatusFilter] = React.useState('');
     const [paymentFilter, setPaymentFilter] = React.useState('');
@@ -99,27 +99,27 @@ export default function ListOrder() {
 
         let test = listOrder;
 
-        if(statusFilter != "" || paymentFilter != "" || importFilter != ""){
-            if(statusFilter != "") {
+        if (statusFilter != "" || paymentFilter != "" || importFilter != "") {
+            if (statusFilter != "") {
                 let result = test.filter(product => product.status === statusFilter);
                 test = result;
                 setSearchedProducts([...result]);
-               }
-            if(paymentFilter != "") {
-            let result = test.filter(product => product.transactionStatus === paymentFilter);
-            test = result;
-            setSearchedProducts([...result]);
             }
-            if(importFilter != "") {
-            let result = searchedProducts.filter(product => product.importedStatus === importFilter);
-            test = result;
-            setSearchedProducts([...result]);
+            if (paymentFilter != "") {
+                let result = test.filter(product => product.transactionStatus === paymentFilter);
+                test = result;
+                setSearchedProducts([...result]);
+            }
+            if (importFilter != "") {
+                let result = searchedProducts.filter(product => product.importedStatus === importFilter);
+                test = result;
+                setSearchedProducts([...result]);
             }
         } else {
             let result = listOrder;
             setSearchedProducts([...result]);
         }
-       
+
 
     }
 
@@ -137,7 +137,7 @@ export default function ListOrder() {
     }, [])
     // console.log(searchedProducts);
     return (
-        <Box px={4} pt={2} backgroundColor="#F4F6F8" minHeight='91vh' >
+        <Box className="supplierOrder-main-content" px={4} pt={2} backgroundColor="#F4F6F8" minHeight='91vh' >
 
             <Box display='flex' flexDirection='column'>
 
@@ -157,7 +157,7 @@ export default function ListOrder() {
                     </UnlockAccess>
                 </Box>
                 <Divider />
-                <Box py={2} px={2} display='flex' justifyContent='space-between' backgroundColor='white'>
+                <Box className="filter-search" py={2} px={2} display='flex' justifyContent='space-between' backgroundColor='white'>
                     <Box display='flex' alignItems='center' sx={{ width: "60%" }} className="search">
                         <TextField
                             placeholder="Tìm kiếm"
@@ -179,8 +179,8 @@ export default function ListOrder() {
                         />
                     </Box>
 
-                    <Box display='flex' alignItems='center' ml={10} sx={{ width: 600, justifyContent: "space-between" }}>
-                        <FormControl sx={{ minWidth: 150, mr: 2 }}>
+                    <Box className="filter" display='flex' alignItems='center' ml={10} sx={{ width: 600, justifyContent: "space-between" }}>
+                        <FormControl >
 
                             <Select
                                 value={statusFilter}
@@ -201,7 +201,7 @@ export default function ListOrder() {
                                 ))}
                             </Select>
                         </FormControl>
-                        <FormControl sx={{ minWidth: 150, mr: 2 }}>
+                        <FormControl >
 
                             <Select
                                 value={paymentFilter}
@@ -222,7 +222,7 @@ export default function ListOrder() {
                                 ))}
                             </Select>
                         </FormControl>
-                        <FormControl sx={{ minWidth: 150 }}>
+                        <FormControl >
 
                             <Select
                                 value={importFilter}

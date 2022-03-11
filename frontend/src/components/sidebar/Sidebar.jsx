@@ -1,18 +1,12 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
 import { styled } from '@mui/material/styles';
+import { List, ListItem, ListItemIcon, ListItemText, ListItemButton, Collapse, Box } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemButton from '@mui/material/ListItemButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import Collapse from '@mui/material/Collapse';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import "./sidebar.scss";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -21,9 +15,8 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Box } from '@mui/material';
 import { AuthContext } from '../../contextAPI/AuthContext';
-
+import "./sidebar.scss";
 
 const drawerWidth = 240;
 
@@ -142,25 +135,25 @@ export default function MiniDrawer({ setHeaderTitle }) {
                         <List component="div" disablePadding>
                             {subMenuList.map((navItem, index) => (
                                 <React.Fragment>
-                                {navItem.phone ?
-                                <ListItemButton className="nav_leftbar_item" button key={navItem.title} sx={{ pl: 4 }}>
-                                    <ListItemIcon className="nav_item_icon">
-                                        {userNavListIcons[index]}
-                                    </ListItemIcon>
-                                    <ListItemText primary={navItem.title} />
-                                    <a style={{color:"white", textDecoration: "none"}} href="tel:1900 0000"> 1900 0000 </a>
-                                </ListItemButton>
-                                :
-                                <Link to={navItem.url} className="nav_link" key={index}>
-                                    <ListItemButton className="nav_leftbar_item" button key={navItem.title} sx={{ pl: 4 }} onClick={() => setHeaderTitle(navItem.title)}>
-                                        <ListItemIcon className="nav_item_icon">
-                                            {userNavListIcons[index]}
-                                        </ListItemIcon>
-                                        <ListItemText primary={navItem.title} />
-                                    </ListItemButton>
-                                </Link>
-                                }
-                                
+                                    {navItem.phone ?
+                                        <ListItemButton className="nav_leftbar_item" button key={navItem.title} sx={{ pl: 4 }}>
+                                            <ListItemIcon className="nav_item_icon">
+                                                {userNavListIcons[index]}
+                                            </ListItemIcon>
+                                            <ListItemText primary={navItem.title} />
+                                            <a style={{ color: "white", textDecoration: "none" }} href="tel:1900 0000"> 1900 0000 </a>
+                                        </ListItemButton>
+                                        :
+                                        <Link to={navItem.url} className="nav_link" key={index}>
+                                            <ListItemButton className="nav_leftbar_item" button key={navItem.title} sx={{ pl: 4 }} onClick={() => setHeaderTitle(navItem.title)}>
+                                                <ListItemIcon className="nav_item_icon">
+                                                    {userNavListIcons[index]}
+                                                </ListItemIcon>
+                                                <ListItemText primary={navItem.title} />
+                                            </ListItemButton>
+                                        </Link>
+                                    }
+
                                 </React.Fragment>
                             ))}
                             <Link onClick={handleClickLogout} to="/login" className="nav_link" >

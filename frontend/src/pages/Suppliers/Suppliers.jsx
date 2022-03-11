@@ -33,7 +33,7 @@ export default function Supplier() {
     }
 
     return (
-        <Box className="navig" px={4} pt={2} backgroundColor="#F4F6F8" minHeight='90vh'>
+        <Box className="navig supplier-main-content" px={4} pt={2} backgroundColor="#F4F6F8" minHeight='90vh'>
             <Box display='flex' flexDirection='column'>
                 <Box display='flex' justifyContent='space-between' py={2} px={2} backgroundColor='white'>
                     <Box display='flex' alignItems='center'>

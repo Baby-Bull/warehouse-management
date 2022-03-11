@@ -15,6 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    height: "100%"
 }));
 
 export default function Home() {
@@ -187,10 +188,10 @@ export default function Home() {
     };
 
     return (
-        <Box pt={2} pb={4} px={4} sx={{ background: "#F4F6F8", height: "100%" }}>
+        <Box className="home-main-content" pt={2} pb={4} px={4} sx={{ background: "#F4F6F8", height: "100%" }}>
             <Box sx={{ width: '100%' }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={3}>
+                <Grid className="cards-index-home" container spacing={2}>
+                    <Grid className="card-index-home" item xs={3}>
                         <Item sx={{ background: "linear-gradient(to bottom, #7900c5, #0d3585);", color: "white" }}>
                             <h3><strong style={{ fontSize: "1.3em" }}>Tổng sản phẩm</strong></h3>
                             <Grid pt={4} pl={4} container spacing={2}>
@@ -210,7 +211,7 @@ export default function Home() {
                             </Grid>
                         </Item>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid className="card-index-home" item xs={3}>
                         <Item sx={{ background: "linear-gradient(to bottom, #7900c5, #0d3585)", color: "white" }}>
                             <h3><strong style={{ fontSize: "1.3em" }}>Tổng số đơn</strong></h3>
                             <Grid pt={4} pl={4} container spacing={2}>
@@ -230,7 +231,7 @@ export default function Home() {
                             </Grid>
                         </Item>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid className="card-index-home" item xs={3}>
                         <Item sx={{ background: "linear-gradient(to bottom, #7900c5, #0d3585)", color: "white" }}>
                             <h3><strong style={{ fontSize: "1.3em" }}>Tổng tiền hàng</strong></h3>
                             <Grid pt={4} pl={4} container spacing={2}>
@@ -250,7 +251,7 @@ export default function Home() {
                             </Grid>
                         </Item>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid className="card-index-home" item xs={3}>
                         <Item sx={{ background: "linear-gradient(to bottom, #7900c5, #0d3585)", color: "white" }}>
                             <h3><strong style={{ fontSize: "1.3em" }}>Tổng số nhà cung cấp</strong></h3>
                             <Grid pt={4} pl={4} container spacing={2}>
@@ -266,16 +267,16 @@ export default function Home() {
                     </Grid>
                 </Grid>
             </Box>
-            <Box spacing={2} sx={{ display: "flex" }} pt={4} pb={4} >
-                <Grid item xs={9.5} >
+            <Box className="highchart1" spacing={2} sx={{ display: "flex" }} pt={4} pb={4} >
+                <Grid className="grid-highchart2" item xs={9.5} >
                     <HighchartsReact
                         sx={{ width: "100%" }}
                         highcharts={Highcharts}
                         options={options}
                     />
                 </Grid>
-                <Grid sx={{ marginLeft: "2em" }} item xs={2.5}>
-                    <Item >
+                <Grid className="grid-highchart1" sx={{ marginLeft: "2em", display: "grid" }} item xs={2.5}>
+                    <Item className="item-highchart1-1">
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <strong style={{ fontSize: "1.3em" }}>Chọn năm thống kê:</strong>
                             <br />
@@ -293,7 +294,7 @@ export default function Home() {
                         </FormControl>
                     </Item>
                     <br />
-                    <Item>
+                    <Item className="item-highchart1-2" >
                         <strong style={{ fontSize: "1.3em" }}>Thông số:</strong>
                         <br />
                         <br />
@@ -313,7 +314,7 @@ export default function Home() {
             <Box>
                 <Grid item xs={12} >
                     <HighchartsReact
-                        sx={{ width: "100%" }}
+                        sx={{ width: "100%", marginBottom: "1em" }}
                         highcharts={Highcharts}
                         options={options2}
                     />

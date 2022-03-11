@@ -10,6 +10,7 @@
         img {
             height: 100vh;
             width: 100vw;
+            object-fit: cover;
         }
     }
     .container {
@@ -24,6 +25,7 @@
     display: grid;
     align-items: center;
     grid-template-columns: repeat(2, 1fr);
+    overflow-y: scroll;
 }
 
 .img {
@@ -169,4 +171,43 @@
     font-size: 24px;
     margin-left: auto;
     color: #7875b5;
+}
+
+@media screen and (max-width: 400px) {
+    * {
+        font-size: 11px !important;
+    }
+    .container {
+        display: block;
+        .login {
+            padding-top: 5em;
+        }
+    }
+    .screen {
+        margin: 0;
+        height: 40em;
+        width: 100vw;
+    }
+
+    .login_page .background img {
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 980px) {
+    * {
+        font-size: 11px !important;
+    }
+    .container {
+        display: block;
+        .login {
+            padding-top: 2em;
+        }
+    }
+    .login__submit {
+        margin-top: 1.2em;
+    }
+    .login_page .background img {
+        object-fit: cover;
+    }
 }

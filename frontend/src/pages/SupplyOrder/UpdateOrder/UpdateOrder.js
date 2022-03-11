@@ -21,14 +21,10 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import * as moment from 'moment';
 
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useHistory } from "react-router-dom";
-
 
 import './UpdateOrder.scss';
 import OrderAPI from '../../../api/OrderAPI'
-import { Collapse } from "@mui/material";
 import ProductAPI from "../../../api/ProductAPI";
 
 Number.prototype.format = function (n, x) {
@@ -58,7 +54,6 @@ export default function DetailOrder({ setStateAlert }) {
     const [numCategory, setNumCategory] = React.useState(0);
     const [total, setTotal] = React.useState(0);
 
-    const [openMenu, setOpenMenu] = React.useState(false);
 
     const [productList, setProductList] = React.useState([]);
     const [productSelect, setProductSelect] = React.useState([]);
@@ -283,235 +278,226 @@ export default function DetailOrder({ setStateAlert }) {
     // console.log(productSelectLast);
 
     return (
-
-        <div>
-            <Box py={2} px={5} sx={{ flexGrow: 1 }} className="body">
-                <Box >
-                    <Box className="back" onClick={history.goBack}>
-                        <ArrowBackIosIcon />
-                        <Box>Đơn nhập hàng</Box>
-                    </Box>
-                    <Box sx={{ display: "flex" }} ml={2}>
-                        <Typography sx={{ fontSize: 36, fontWeight: 450 }}>{codeOrder}</Typography>
-                    </Box>
+        <Box py={2} px={5} sx={{ flexGrow: 1 }} className="main-updateOrder-content body">
+            <Box className="navig">
+                <Box className="back" onClick={history.goBack}>
+                    <ArrowBackIosIcon />
+                    <Box>Đơn nhập hàng</Box>
                 </Box>
-                <Box className="test"  >
-                    <Box className="supplier">
-                        <Box >
-                            <Typography className="title">
-                                Thông tin đơn nhập hàng
-                            </Typography>
-
-                            <Box className="headerSupply">
-                                <Box className="nameSupply">
-                                    <PersonRoundedIcon sx={{ marginRight: "20px" }} />
-                                    <Typography sx={{ marginRight: "5px", fontWeight: 600 }}>{nameSupplier}</Typography>
-
-                                </Box>
-                                <Typography className="debt" sx={{ fontWeight: 600 }} >Công nợ: {debt?.format()} vnd</Typography>
-                            </Box>
-                        </Box>
-                        <Divider />
-                        <Box className="detail-supplier">
-                            <Box className="export-address">
-                                <Typography className="title-add">Địa chỉ xuất hàng</Typography>
-                                <Typography>Giao hàng</Typography>
-                                <Typography>----</Typography>
-                                <Typography>{address}</Typography>
-                                {/* <Typography>Quận Ba Đình - Hà Nội</Typography> */}
-                                <Typography>Email: {email}</Typography>
-                            </Box>
-                            <Box className="billing-ex-add">
-                                <Typography className="title-add" >Địa chỉ xuất hoá đơn</Typography>
-                                <Typography>Giao hàng</Typography>
-                                <Typography>----</Typography>
-                                <Typography>{address}</Typography>
-                                {/* <Typography>Quận Ba Đình - Hà Nội</Typography> */}
-                                <Typography>Email: {email}</Typography>
-                            </Box>
-                        </Box>
-                    </Box>
-                    <Box className="product">
+                <Box sx={{ width: '100%' }} className="time-line">
+                    <Stepper activeStep={1} alternativeLabel>
+                        {steps.map((label) => (
+                            <Step key={label}>
+                                <StepLabel>{label}</StepLabel>
+                            </Step>
+                        ))}
+                    </Stepper>
+                </Box>
+                <Box className="tag-button" ml={2}>
+                    <Typography sx={{ fontSize: 36, fontWeight: 450 }}>{codeOrder}</Typography>
+                    <Button variant="contained" className="btn-order" onClick={SubmitUpdate}>Lưu
+                    </Button>
+                </Box>
+            </Box>
+            <Box className="test">
+                <Box className="supplier">
+                    <Box >
                         <Typography className="title">
                             Thông tin đơn nhập hàng
                         </Typography>
-                        <Box className="selectproduct">
-                            <Box className="selectProduct-info">
-                                <SearchIcon className="icon-search" />
-                                <Autocomplete className="selectProductItem"
-                                    classes={classes}
-                                    disablePortal
-                                    onChange={(event, newValue) => handleSelectProd(event, newValue)}
-                                    id="combo-box-demo"
-                                    options={productList}
-                                    // open="true"
-                                    getOptionLabel={(option) => option.product.name}
-                                    renderOption={(props, option) => (
-                                        <Box {...props}>
-                                            <Box><img
-                                                style={{ width: "35px", height: "35px" }}
-                                                src={
-                                                    option.imageUrl
-                                                        ? option.imageUrl
-                                                        : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1N8tGE9JE-BAn4GgYgG6MHCngMqXZKpZYzAUaI8kaPywl-kM_-9Zk8OnNOhmdt1sBjQ&usqp=CAU"
-                                                }
-                                            /></Box>
-                                            <Box className="info">
-                                                <Box sx={{ display: "flex" }} className="info-prod" >
-                                                    <Box sx={{ fontWeight: 550 }}>{option.variantName}</Box>
-                                                    <Box>{option.originalPrice.format()}</Box>
-                                                </Box>
-                                                <Box sx={{ display: "flex" }} className="info-prod">
-                                                    <Box>{option.code}</Box>
-                                                    <Box>Số lượng: {option.inventoryQuantity.format()}</Box>
-                                                </Box>
-                                            </Box>
-                                        </Box>
-                                    )}
-                                    // sx={{ width: 500 }}
-                                    renderInput={(params) => <TextField {...params} style={{ padding: 0 }} placeholder="Chọn sản phẩm cần nhập" />}
-                                />
-                            </Box>
-                            {/* <Button variant="outlined" className="btn-more-select">Chọn nhiều</Button> */}
-                        </Box>
-                        <Box className="header-Product">
-                            <div style={{ width: "10%", textAlign: "center" }}>Mã SKU</div>
-                            <div style={{ width: "48.5%", float: "left", paddingLeft: "15px" }}>Tên sản phẩm</div>
-                            <div style={{ width: "10%", textAlign: "center" }}>Đơn vị</div>
-                            <div style={{ width: "10%", textAlign: "center" }}>Số lượng</div>
-                            <div style={{ width: "10%", textAlign: "center" }}>Giá nhập</div>
-                            <div style={{ width: "10%", textAlign: "center" }}>Thành tiền</div>
-                            <div style={{ width: "1.5%", textAlign: "center" }}></div>
-                        </Box>
-                        <Box className="bodyProducts">
 
-                            <List>
-                                {
-
-                                    productSelect?.map(item => {
-                                        return (
-                                            <ListItem className="product-item"
-                                            >
-                                                <Typography sx={{ width: '10%', alignItems: "center" }}>{item.code}</Typography>
-                                                <Typography sx={{ width: '48%', paddingLeft: "5px", fontWeight: 550 }} >{item.variantName}</Typography>
-                                                <Typography sx={{ width: '10%', textAlign: "center" }}>{item.unit}</Typography>
-                                                <Box sx={{ width: '10%', textAlign: "center" }}><input type="text" style={{ width: '80%', height: 35 }} name="num" value={(num[item.id])}
-                                                    onChange={e =>
-                                                        setNum({ ...num, [item.id]: e.target.value })}
-                                                /></Box>
-                                                <Box sx={{ width: '10%', textAlign: "center" }}><input type="text" style={{ width: '80%', height: 35 }} name="originalPrice" value={(originalPrice[item.id])}
-                                                    onChange={e => setOriginalPrice({ ...originalPrice, [item.id]: e.target.value })}
-                                                /></Box>
-
-                                                <Typography sx={{ width: '10%', textAlign: "center" }}>{(Number(num[item.id]) * Number(originalPrice[item.id]))?.format()}</Typography>
-                                                <CancelIcon sx={{ width: '2%', textAlign: "center" }} onClick={() => handDeleteProduct(item.id)} />
-                                            </ListItem>)
-                                    })
-                                }
-
-                            </List>
-                            <Box className="pay-info">
-                                <Box className="pay-info-item">
-                                    <Typography>Tổng sản phẩm</Typography>
-                                    <Typography>{numProduct?.format()}</Typography>
-                                </Box>
-                                <Box className="pay-info-item">
-                                    <Typography>Tổng loại sản phẩm</Typography>
-                                    <Typography>{numCategory?.format()}</Typography>
-                                </Box>
-                                <Box className="pay-info-item">
-                                    <Typography>Tổng tiền</Typography>
-                                    <Typography>{total?.format()} vnd</Typography>
-                                </Box>
-                                <Box className="pay-info-item" sx={{ color: "#007BFF", cursor: "pointer" }}>
-                                    <Typography onClick={handleOpenDiscount} sx={{ display: "flex", alignItems: "center" }}>
-                                        <Typography>Tổng chiết khấu</Typography>
-                                        <ArrowDropDownIcon />
-                                    </Typography>
-                                    <Typography>{discount}%</Typography>
-                                </Box>
-                                {
-                                    !openDiscount ? null :
-                                        <Box className="changeDiscount" sx={{ width: "100%" }}>
-                                            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                                                <Box sx={{ display: "flex", alignItems: "center" }}>
-                                                    <TextField
-
-                                                        onChange={e => setDiscount(e.target.value)} >
-
-                                                    </TextField>
-                                                    <Typography>%</Typography>
-                                                </Box>
-                                                <Button variant="contained" className="btn-discount" onClick={handleOpenDiscount}
-                                                    sx={{ marginLeft: "20px", backgroundColor: "#007BFF" }}>Áp dụng</Button>
-                                            </Box>
-
-                                        </Box>
-                                }
-                                <Box className="pay-info-item">
-                                    <Typography sx={{ fontWeight: 700 }}>Phải trả</Typography>
-                                    <Typography>{Number((total * Number(100 - discount) / 100).toFixed(2)).format()} vnd</Typography>
-
-                                </Box>
+                        <Box className="headerSupply">
+                            <Box className="nameSupply">
+                                <PersonRoundedIcon sx={{ marginRight: "20px" }} />
+                                <Typography sx={{ marginRight: "5px", fontWeight: 600 }}>{nameSupplier}</Typography>
 
                             </Box>
+                            <Typography className="debt" sx={{ fontWeight: 600 }} >Công nợ: {debt?.format()} vnd</Typography>
+                        </Box>
+                    </Box>
+                    <Divider />
+                    <Box className="detail-supplier">
+                        <Box className="export-address">
+                            <Typography className="title-add">Địa chỉ xuất hàng</Typography>
+                            <Typography>Giao hàng</Typography>
+                            <Typography>----</Typography>
+                            <Typography>{address}</Typography>
+                            {/* <Typography>Quận Ba Đình - Hà Nội</Typography> */}
+                            <Typography>Email: {email}</Typography>
+                        </Box>
+                        <Box className="billing-ex-add">
+                            <Typography className="title-add" >Địa chỉ xuất hoá đơn</Typography>
+                            <Typography>Giao hàng</Typography>
+                            <Typography>----</Typography>
+                            <Typography>{address}</Typography>
+                            {/* <Typography>Quận Ba Đình - Hà Nội</Typography> */}
+                            <Typography>Email: {email}</Typography>
                         </Box>
                     </Box>
                 </Box>
-
-                <Box sx={{ paddingLeft: "10px" }} className="more-info">
-
-                    <Box sx={{ width: '100%' }} className="time-line">
-                        <Stepper activeStep={1} alternativeLabel>
-                            {steps.map((label) => (
-                                <Step key={label}>
-                                    <StepLabel>{label}</StepLabel>
-                                </Step>
-                            ))}
-                        </Stepper>
-                    </Box>
-                    <Box className="more-info-detail">
-                        <Box className="title">Thông tin bổ sung</Box>
-                        <Box className="code-supply-order">
-                            <Box className='title'>Mã đơn nhập hàng</Box>
-                            <Box className="info">{codeOrder}</Box>
+                <Box className="product">
+                    <Typography className="title">
+                        Thông tin đơn nhập hàng
+                    </Typography>
+                    <Box className="selectproduct">
+                        <Box className="selectProduct-info">
+                            <SearchIcon className="icon-search" />
+                            <Autocomplete className="selectProductItem"
+                                classes={classes}
+                                disablePortal
+                                onChange={(event, newValue) => handleSelectProd(event, newValue)}
+                                id="combo-box-demo"
+                                options={productList}
+                                // open="true"
+                                getOptionLabel={(option) => option.product.name}
+                                renderOption={(props, option) => (
+                                    <Box {...props}>
+                                        <Box><img
+                                            style={{ width: "35px", height: "35px" }}
+                                            src={
+                                                option.imageUrl
+                                                    ? option.imageUrl
+                                                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1N8tGE9JE-BAn4GgYgG6MHCngMqXZKpZYzAUaI8kaPywl-kM_-9Zk8OnNOhmdt1sBjQ&usqp=CAU"
+                                            }
+                                        /></Box>
+                                        <Box className="info">
+                                            <Box sx={{ display: "flex" }} className="info-prod" >
+                                                <Box sx={{ fontWeight: 550 }}>{option.variantName}</Box>
+                                                <Box>{option.originalPrice.format()}</Box>
+                                            </Box>
+                                            <Box sx={{ display: "flex" }} className="info-prod">
+                                                <Box>{option.code}</Box>
+                                                <Box>Số lượng: {option.inventoryQuantity.format()}</Box>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                )}
+                                // sx={{ width: 500 }}
+                                renderInput={(params) => <TextField {...params} style={{ padding: 0 }} placeholder="Chọn sản phẩm cần nhập" />}
+                            />
                         </Box>
-                        <Box className="time-supply-order">
-                            <Box className='title'>Ngày nhận hàng</Box>
-                            <Box className="time">
-                                <LocalizationProvider dateAdapter={AdapterDateFns}  >
-                                    <DatePicker
-                                        inputFormat="yyyy/MM/dd"
-                                        value={date}
+                        {/* <Button variant="outlined" className="btn-more-select">Chọn nhiều</Button> */}
+                    </Box>
+                    <Box className="header-Product">
+                        <div style={{ width: "10%", textAlign: "center" }}>Mã SKU</div>
+                        <div style={{ width: "48.5%", float: "left", paddingLeft: "15px" }}>Tên sản phẩm</div>
+                        <div style={{ width: "10%", textAlign: "center" }}>Đơn vị</div>
+                        <div style={{ width: "10%", textAlign: "center" }}>Số lượng</div>
+                        <div style={{ width: "10%", textAlign: "center" }}>Giá nhập</div>
+                        <div style={{ width: "10%", textAlign: "center" }}>Thành tiền</div>
+                        <div style={{ width: "1.5%", textAlign: "center" }}></div>
+                    </Box>
+                    <Box className="bodyProducts">
 
-                                        onChange={(views) => {
-                                            setDate(views);
-                                        }}
-                                        renderInput={(params) => <TextField {...params} placeholder="Ngày nhận" />}
-                                    />
-                                </LocalizationProvider>
+                        <List>
+                            {
+
+                                productSelect?.map(item => {
+                                    return (
+                                        <ListItem className="product-item"
+                                        >
+                                            <Typography sx={{ width: '10%', alignItems: "center" }}>{item.code}</Typography>
+                                            <Typography sx={{ width: '48%', paddingLeft: "5px", fontWeight: 550 }} >{item.variantName}</Typography>
+                                            <Typography sx={{ width: '10%', textAlign: "center" }}>{item.unit}</Typography>
+                                            <Box sx={{ width: '10%', textAlign: "center" }}><input type="text" style={{ width: '80%', height: 35 }} name="num" value={(num[item.id])}
+                                                onChange={e =>
+                                                    setNum({ ...num, [item.id]: e.target.value })}
+                                            /></Box>
+                                            <Box sx={{ width: '10%', textAlign: "center" }}><input type="text" style={{ width: '80%', height: 35 }} name="originalPrice" value={(originalPrice[item.id])}
+                                                onChange={e => setOriginalPrice({ ...originalPrice, [item.id]: e.target.value })}
+                                            /></Box>
+
+                                            <Typography sx={{ width: '10%', textAlign: "center" }}>{(Number(num[item.id]) * Number(originalPrice[item.id]))?.format()}</Typography>
+                                            <CancelIcon sx={{ width: '2%', textAlign: "center" }} onClick={() => handDeleteProduct(item.id)} />
+                                        </ListItem>)
+                                })
+                            }
+
+                        </List>
+                        <Box className="pay-info">
+                            <Box className="pay-info-item">
+                                <Typography>Tổng sản phẩm</Typography>
+                                <Typography>{numProduct?.format()}</Typography>
                             </Box>
-                            {/* <Box className="time">
+                            <Box className="pay-info-item">
+                                <Typography>Tổng loại sản phẩm</Typography>
+                                <Typography>{numCategory?.format()}</Typography>
+                            </Box>
+                            <Box className="pay-info-item">
+                                <Typography>Tổng tiền</Typography>
+                                <Typography>{total?.format()} vnd</Typography>
+                            </Box>
+                            <Box className="pay-info-item" sx={{ color: "#007BFF", cursor: "pointer" }}>
+                                <Typography onClick={handleOpenDiscount} sx={{ display: "flex", alignItems: "center" }}>
+                                    <Typography>Tổng chiết khấu</Typography>
+                                    <ArrowDropDownIcon />
+                                </Typography>
+                                <Typography>{discount}%</Typography>
+                            </Box>
+                            {
+                                !openDiscount ? null :
+                                    <Box className="changeDiscount" sx={{ width: "100%" }}>
+                                        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                                <TextField
+
+                                                    onChange={e => setDiscount(e.target.value)} >
+
+                                                </TextField>
+                                                <Typography>%</Typography>
+                                            </Box>
+                                            <Button variant="contained" className="btn-discount" onClick={handleOpenDiscount}
+                                                sx={{ marginLeft: "20px", backgroundColor: "#007BFF" }}>Áp dụng</Button>
+                                        </Box>
+
+                                    </Box>
+                            }
+                            <Box className="pay-info-item">
+                                <Typography sx={{ fontWeight: 700 }}>Phải trả</Typography>
+                                <Typography>{Number((total * Number(100 - discount) / 100).toFixed(2)).format()} vnd</Typography>
+
+                            </Box>
+
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+
+            <Box sx={{ paddingLeft: "10px" }} className="more-info">
+                <Box className="more-info-detail">
+                    <Box className="title">Thông tin bổ sung</Box>
+                    <Box className="code-supply-order">
+                        <Box className='title'>Mã đơn nhập hàng</Box>
+                        <Box className="info">{codeOrder}</Box>
+                    </Box>
+                    <Box className="time-supply-order">
+                        <Box className='title'>Ngày nhận hàng</Box>
+                        <Box className="time">
+                            <LocalizationProvider dateAdapter={AdapterDateFns}  >
+                                <DatePicker
+                                    inputFormat="yyyy/MM/dd"
+                                    value={date}
+
+                                    onChange={(views) => {
+                                        setDate(views);
+                                    }}
+                                    renderInput={(params) => <TextField {...params} placeholder="Ngày nhận" />}
+                                />
+                            </LocalizationProvider>
+                        </Box>
+                        {/* <Box className="time">
                                 {expectedTime}
                             </Box> */}
-                        </Box>
-                        <Box className="note">
-                            <Box className="title">Ghi chú</Box>
-                            <textarea className="content-note" onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
-                            <Box></Box>
-                        </Box>
-
-
                     </Box>
-
+                    <Box className="note">
+                        <Box className="title">Ghi chú</Box>
+                        <textarea className="content-note" onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
+                        <Box></Box>
+                    </Box>
                 </Box>
-                <Button variant="contained" className="btn-order" sx={{ position: "absolute" }}
-                    onClick={SubmitUpdate}
-                >Lưu</Button>
-
-                {/* </Grid> */}
             </Box>
-        </div>
+            {/* </Grid> */}
+        </Box>
 
     );
 }

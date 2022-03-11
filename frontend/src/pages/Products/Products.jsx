@@ -114,7 +114,7 @@ export default function Products({ setStateAlert }) {
     }
 
     return (
-        <Box backgroundColor="#F4F6F8" minHeight="91vh" pt={2} pb={4} px={4}>
+        <Box className="product-main-content" backgroundColor="#F4F6F8" minHeight="91vh" pt={2} pb={4} px={4}>
             <Box display="flex" flexDirection="column">
                 <Box
                     display="flex"
@@ -188,7 +188,7 @@ export default function Products({ setStateAlert }) {
                 </Box>
             </Box>
             <Box py={2} px={1} display="flex" justifyContent="space-evenly" backgroundColor='white'>
-                <Card sx={{
+                <Card className="card-index-product" sx={{
                     borderRadius: '40px',
                     px: 3,
                     width: '20%'
@@ -198,7 +198,7 @@ export default function Products({ setStateAlert }) {
                         <Typography>{totalStorage}</Typography>
                     </CardContent>
                 </Card>
-                <Card sx={{
+                <Card className="card-index-product" sx={{
                     borderRadius: '40px',
                     px: 3,
                     width: '20%'
@@ -208,7 +208,7 @@ export default function Products({ setStateAlert }) {
                         <Typography>{products.length}</Typography>
                     </CardContent>
                 </Card>
-                <Card sx={{
+                <Card className="card-index-product" sx={{
                     borderRadius: '40px',
                     px: 3,
                     width: '20%'
@@ -218,7 +218,7 @@ export default function Products({ setStateAlert }) {
                         <Typography>{activeVariants}</Typography>
                     </CardContent>
                 </Card>
-                <Card sx={{
+                <Card className="card-index-product" sx={{
                     borderRadius: '40px',
                     px: 3,
                     width: '20%'

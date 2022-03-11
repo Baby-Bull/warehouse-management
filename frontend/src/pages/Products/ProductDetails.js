@@ -51,7 +51,7 @@ function ProductDetails({ setStateAlert }) {
     const variantsData = await ProductAPI.variantList(params.id);
     // if(productData.data.recordStatus !== "Đang hoạt động") history.push(`/san-pham`);
     // redirect to /products when all variants are already deleted
-    if(variantsData.data.length < 1) history.push(`/san-pham`);
+    if (variantsData.data.length < 1) history.push(`/san-pham`);
     setVariants(variantsData.data);
     if (chosenVariant) {
       setVariantInfo(chosenVariant);
@@ -71,23 +71,23 @@ function ProductDetails({ setStateAlert }) {
 
   const handleDeleteProduct = () => {
     ProductAPI.deleteProduct(product.id)
-    .then(res => {
-      setStateAlert({ severity: "success", variant: "filled", open: true, content: res.data.name + " đã được xóa" });
-      history.push(`/san-pham`);
-    })
-    .catch(err => {
-      setStateAlert({ severity: "error", variant: "filled", open: true, content: err.response.data });
-    });
+      .then(res => {
+        setStateAlert({ severity: "success", variant: "filled", open: true, content: res.data.name + " đã được xóa" });
+        history.push(`/san-pham`);
+      })
+      .catch(err => {
+        setStateAlert({ severity: "error", variant: "filled", open: true, content: err.response.data });
+      });
   };
 
   const handleDeleteVariant = (id) => {
     ProductAPI.deleteVariant(id)
-    .then(res => {
-      setStateAlert({ severity: "success", variant: "filled", open: true, content: res.data.variantName + " đã được xóa" });
-    })
-    .catch(err => {
-      setStateAlert({ severity: "error", variant: "filled", open: true, content: err.response.data });
-    });
+      .then(res => {
+        setStateAlert({ severity: "success", variant: "filled", open: true, content: res.data.variantName + " đã được xóa" });
+      })
+      .catch(err => {
+        setStateAlert({ severity: "error", variant: "filled", open: true, content: err.response.data });
+      });
   };
 
   const triggerReload = () => {
@@ -95,7 +95,7 @@ function ProductDetails({ setStateAlert }) {
   };
 
   return !loading ? (
-    <Box px={4} backgroundColor="#F4F6F8" display="flex" flexDirection="column">
+    <Box className="product-main-content" px={4} backgroundColor="#F4F6F8" display="flex" flexDirection="column">
       <Box py={1}>
         <Typography
           underline="none"
@@ -120,27 +120,28 @@ function ProductDetails({ setStateAlert }) {
       >
         <Typography variant="h4">{product.name}</Typography>
         <UnlockAccess request={['ADMIN', 'Nhân viên kho']}>
-        <Box display="flex">
-          <Button
-            variant="outlined"
-            color="error"
-            sx={{ mr: 2 }}
-            onClick={() => handleDeleteProduct()}
-          >
-            Xóa
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => history.push(`/san-pham/${product.id}/chinh-sua`)}
-          >
-            Chỉnh sửa sản phẩm
-          </Button>
-        </Box>
+          <Box display="flex">
+            <Button
+              variant="outlined"
+              color="error"
+              sx={{ mr: 2 }}
+              onClick={() => handleDeleteProduct()}
+            >
+              Xóa
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => history.push(`/san-pham/${product.id}/chinh-sua`)}
+            >
+              Chỉnh sửa sản phẩm
+            </Button>
+          </Box>
         </UnlockAccess>
       </Box>
 
       <Box
+        className="detail-product"
         py={2}
         px={1}
         display="flex"
@@ -154,49 +155,48 @@ function ProductDetails({ setStateAlert }) {
         {/* <ProductDetailsInfo product={product} variantNumber={variants.length}/> */}
         <Box display="flex">
           <Box
-
-            width="25%"
+            className="images-demo"
             display="flex"
             justifyContent="center"
             alignItems="center"
             px={2}
             py={2}
           >
-            {variants.every(v => v.imageUrl === null) ? 
-            // <div>hehe</div>
-            <Swiper
-              navigation={true}
-              pagination={{
-                dynamicBullets: true
-              }}
-              className="mySwiper"
-            >
-              {/* <SwiperSlide><img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO6JPHK1VkhnXyF-JblYmBWNQqOsJ1p9AL1JmjnQABCNV3g3Vbn3ILskTCCti96pggJfc&usqp=CAU"} /></SwiperSlide> */}
-              {product.imageUrl ? <SwiperSlide><img alt="Ảnh sản phẩm" src={product.imageUrl} /></SwiperSlide> : null}
-              <SwiperSlide><img alt="Ảnh phiên bản sản phẩm" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1N8tGE9JE-BAn4GgYgG6MHCngMqXZKpZYzAUaI8kaPywl-kM_-9Zk8OnNOhmdt1sBjQ&usqp=CAU"} /></SwiperSlide>
-            </Swiper>
-            :
-            <Swiper
-              slidesPerView={1}
-              spaceBetween={50}
-              loop={true}
-              navigation={true}
-              pagination={{
-                dynamicBullets: true
-              }}
-              className="mySwiper"
-            >
-              {product.imageUrl ? <SwiperSlide><img alt="Ảnh sản phẩm" src={product.imageUrl} /></SwiperSlide> : null}
-              {
-                variants.map((variant) => {
-                  if (variant.imageUrl) return <SwiperSlide key={variant.code}><img alt="Ảnh phiên bản sản phẩm" src={variant.imageUrl} /></SwiperSlide>
-                  else return null
-                })
-              }
-            </Swiper>
+            {variants.every(v => v.imageUrl === null) ?
+              // <div>hehe</div>
+              <Swiper
+                navigation={true}
+                pagination={{
+                  dynamicBullets: true
+                }}
+                className="mySwiper"
+              >
+                {/* <SwiperSlide><img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO6JPHK1VkhnXyF-JblYmBWNQqOsJ1p9AL1JmjnQABCNV3g3Vbn3ILskTCCti96pggJfc&usqp=CAU"} /></SwiperSlide> */}
+                {product.imageUrl ? <SwiperSlide><img alt="Ảnh sản phẩm" src={product.imageUrl} /></SwiperSlide> : null}
+                <SwiperSlide><img alt="Ảnh phiên bản sản phẩm" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1N8tGE9JE-BAn4GgYgG6MHCngMqXZKpZYzAUaI8kaPywl-kM_-9Zk8OnNOhmdt1sBjQ&usqp=CAU"} /></SwiperSlide>
+              </Swiper>
+              :
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={50}
+                loop={true}
+                navigation={true}
+                pagination={{
+                  dynamicBullets: true
+                }}
+                className="mySwiper"
+              >
+                {product.imageUrl ? <SwiperSlide><img alt="Ảnh sản phẩm" src={product.imageUrl} /></SwiperSlide> : null}
+                {
+                  variants.map((variant) => {
+                    if (variant.imageUrl) return <SwiperSlide key={variant.code}><img alt="Ảnh phiên bản sản phẩm" src={variant.imageUrl} /></SwiperSlide>
+                    else return null
+                  })
+                }
+              </Swiper>
             }
           </Box>
-          <Box width="75%" display="flex" px={2} py={2}>
+          <Box className="info-demo" px={2} py={2}>
             <Box
               width="25%"
               display="flex"
@@ -237,7 +237,7 @@ function ProductDetails({ setStateAlert }) {
               justifyContent="space-evenly"
               height="100%"
             >
-              <Typography>:{product.weight > 999 ? `${product.weight/1000} kg` : `${product.weight} g`}</Typography>
+              <Typography>:{product.weight > 999 ? `${product.weight / 1000} kg` : `${product.weight} g`}</Typography>
               <Typography>: {product.createdAt}</Typography>
               {/* placeholder */}
               <Typography sx={{ opacity: "0" }}>.</Typography>

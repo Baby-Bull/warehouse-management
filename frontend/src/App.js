@@ -24,7 +24,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { viVN } from "@mui/material/locale";
 import User from "./pages/User/User";
 import ReturnReceipts from "./pages/SupplyOrder/DetailOrder/ReturnReceipts";
-import RoleBasedRouting from "./components/roleBasedRender/RoleBasedRouting"
+import RoleBasedRouting from "./components/roleBasedRender/RoleBasedRouting";
+import useWindowDimensions from "./components/dimensions/Dimentions";
+
 
 const theme = createTheme(
   {
@@ -36,6 +38,9 @@ const theme = createTheme(
 );
 
 function App() {
+
+  const { height, width } = useWindowDimensions();
+
   const [headerTitle, setHeaderTitle] = useState("Trang quản lý");
   const { token } = useContext(AuthContext);
   const [stateAlert, setStateAlert] = useState({
@@ -58,7 +63,7 @@ function App() {
               :
               <Box sx={{ display: "flex", width: "100%", background: "#27274b", }}>
                 <CssBaseline />
-                <Sidebar ebar setHeaderTitle={setHeaderTitle} />
+                {(width > 980) && <Sidebar setHeaderTitle={setHeaderTitle} />}
                 <Box className="box_content" component="main">
                   <Topbar headerTitle={headerTitle} setHeaderTitle={setHeaderTitle} ></Topbar>
                   {/* <Route exact path="/san-pham">
@@ -102,7 +107,7 @@ function App() {
                   <RoleBasedRouting exact path="/san-pham" roles={['ADMIN', 'Nhân viên kho', 'Kế toán']} currRole={token.role[0].name}>
                     <Products setStateAlert={setStateAlert} />
                   </RoleBasedRouting>
-                   <RoleBasedRouting path="/tao-san-pham" roles={['ADMIN', 'Nhân viên kho']}>
+                  <RoleBasedRouting path="/tao-san-pham" roles={['ADMIN', 'Nhân viên kho']}>
                     <CreateProduct setStateAlert={setStateAlert} />
                   </RoleBasedRouting>
                   <RoleBasedRouting exact path="/san-pham/:id" roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
@@ -118,16 +123,16 @@ function App() {
                     <Variants setStateAlert={setStateAlert} />
                   </RoleBasedRouting>
                   <RoleBasedRouting path="/kiem-hang" roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}></RoleBasedRouting>
-                  <RoleBasedRouting exact path="/nha-cung-cap"  roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
+                  <RoleBasedRouting exact path="/nha-cung-cap" roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
                     <Supplier />
                   </RoleBasedRouting>
                   <RoleBasedRouting path="/nha-cung-cap/tao-moi-nha-cung-cap" roles={['ADMIN', 'Nhân viên kho']}>
                     <CreateSupplier setStateAlert={setStateAlert} />
                   </RoleBasedRouting>
-                  <RoleBasedRouting path="/thong-tin-nha-cung-cap"  roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
+                  <RoleBasedRouting path="/thong-tin-nha-cung-cap" roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
                     <DetailSupplier setStateAlert={setStateAlert} />
                   </RoleBasedRouting>
-                  <RoleBasedRouting exact path="/nhap-hang"  roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
+                  <RoleBasedRouting exact path="/nhap-hang" roles={['ADMIN', 'Nhân viên kho', 'Kế toán']}>
                     <ListOrder />
                   </RoleBasedRouting>
                   <RoleBasedRouting path="/nhap-hang/tao-don-nhap-hang" roles={['ADMIN', 'Nhân viên kho']}>

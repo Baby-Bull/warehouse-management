@@ -3,7 +3,7 @@ import "./login.scss";
 import { useContext, useRef } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { AuthContext } from '../../contextAPI/AuthContext';
-import Login_RegisterAPI from '../../api/Login_RegisterAPI';
+import { CircularProgress } from "@material-ui/core";
 import axios from 'axios';
 import { Alert, Snackbar } from '@mui/material';
 
@@ -13,11 +13,12 @@ export default function Login() {
 
     const username = useRef("");
     const password = useRef("");
-    const { dispatch } = useContext(AuthContext);
+    const { user, isFetching, error, dispatch } = useContext(AuthContext);
     const history = useHistory();
 
     const LoginCall = async (e) => {
         e.preventDefault();
+        dispatch({ type: "LOGIN_START" });
         const inputlogin = {
             username: username.current.value,
             password: password.current.value
@@ -29,7 +30,7 @@ export default function Login() {
                 const res = await axios.post("https://storage-management-backend-ndt.herokuapp.com/login", inputlogin);
                 dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
                 window.location.replace("/trang-chu");
-                // history.push("/san-pham")
+
             } catch (error) {
                 setStateAlert({ severity: "error", variant: "filled", open: true, content: "Tên đăng nhập hoặc mật khẩu không đúng" })
                 dispatch({ type: "LOGIN_FAILURE", payload: error });
@@ -43,9 +44,9 @@ export default function Login() {
                 <img className='logo_image' src="https://www.sapo.vn/Themes/Portal/Default/StylesV2/images/home/bg-banner-tet-1280.png?v=7" alt="" />
             </div>
             <div className="container">
-                <div className="img">
+                {/* <div className="img">
                     <img className='logo_image' src="./images/logo2.PNG" alt="" />
-                </div>
+                </div> */}
                 <div className="screen">
                     <div className="screen__content">
                         <form onSubmit={LoginCall} className="login">
@@ -58,8 +59,12 @@ export default function Login() {
                                 <input ref={password} type="password" className="login__input" placeholder="Mật khẩu" />
                             </div>
                             <button type='submit' className="button login__submit">
-                                <span className="button__text">Đăng nhập</span>
-                                <i className="button__icon fas fa-chevron-right" />
+                                {isFetching ? <CircularProgress color="white" size="20px" /> :
+                                    <>
+                                        <span className="button__text">Đăng nhập</span>
+                                        <i className="button__icon fas fa-chevron-right" />
+                                    </>
+                                }
                             </button>
                             <Link to={"/register"} className="button login__submit">
                                 <span className="button__text">Đăng ký tài khoản Admin</span>

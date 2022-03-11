@@ -1,8 +1,9 @@
 .mySwiper {
   height: 15em;
 }
-.swiper-button-prev:after,.swiper-button-next:after{
-  font-size: 1.5em!important;
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 1.5em !important;
 }
 .swiper-slide {
   text-align: center;
@@ -29,4 +30,32 @@
   display: block;
   height: inherit;
   object-fit: cover;
+}
+.card-index-product {
+  border-radius: "10px";
+  padding: 3px;
+  width: "20%";
+}
+
+@media screen and (max-width: 500px) {
+  .product-main-content {
+    padding: 1em 0.3em !important;
+    .detail-product {
+      .images-demo {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .info-demo {
+        width: 60%;
+        display: flex;
+      }
+    }
+  }
+  .card-index-product {
+    border-radius: 4px !important;
+    padding: 0px !important;
+    width: 23% !important;
+  }
 }

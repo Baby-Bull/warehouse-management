@@ -350,13 +350,22 @@ export default function DetailOrder({ setStateAlert }) {
     return (
 
         <div>
-            <Box py={2} px={5} sx={{ flexGrow: 1, minHeight: "85vh" }} className="body">
+            <Box py={2} px={5} sx={{ flexGrow: 1, minHeight: "85vh" }} className="body main-detailOrder-content">
                 <Box className="header-page-detail">
                     <Box className="back" onClick={gobackOrder}>
                         <ArrowBackIosIcon />
                         <Box>Đơn nhập hàng</Box>
                     </Box>
-                    <Box sx={{ display: "flex", justifyContent: "space-between" }} ml={2}>
+                    <Box sx={{ width: '100%' }} className="time-line">
+                        <Stepper activeStep={active} alternativeLabel>
+                            {steps.map((label) => (
+                                <Step key={label}>
+                                    <StepLabel>{label}</StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                    </Box>
+                    <Box className="tag-button" ml={2}>
                         <Typography sx={{ fontSize: 36, fontWeight: 450 }}>{codeOrder}</Typography>
                         <UnlockAccess request={['ADMIN', 'Nhân viên kho']}>
                             {
@@ -366,7 +375,7 @@ export default function DetailOrder({ setStateAlert }) {
                                             (order?.transactionStatus == "Chưa thanh toán" && order?.importedStatus == "Chờ nhập kho") ?
                                                 <Button variant="outlined" color="error" sx={{ width: "50px", marginRight: "16px" }} onClick={handleDeleteOrder}> Huỷ </Button>
                                                 : null
-                                            }
+                                        }
 
                                         <Link to={`/nhap-hang/sua-don-hang?code=${searchParam}`} className="link-update">
                                             <Button variant="contained" sx={{ width: "200px" }}> Chỉnh sửa đơn hàng</Button>
@@ -792,36 +801,25 @@ export default function DetailOrder({ setStateAlert }) {
                                 </Box> : null
                         }
                     </Box>
-                </Box>
-
-                <Box sx={{ paddingLeft: "10px" }} className="more-info">
-
-                    <Box sx={{ width: '100%' }} className="time-line">
-                        <Stepper activeStep={active} alternativeLabel>
-                            {steps.map((label) => (
-                                <Step key={label}>
-                                    <StepLabel>{label}</StepLabel>
-                                </Step>
-                            ))}
-                        </Stepper>
-                    </Box>
-                    <Box className="more-info-detail">
-                        <Box className="title">Thông tin bổ sung</Box>
-                        <Box className="code-supply-order">
-                            <Box className='title'>Mã đơn nhập hàng</Box>
-                            <Box className="info">{codeOrder}</Box>
-                        </Box>
-                        <Box className="time-supply-order">
-                            <Box className='title'>Ngày nhận hàng</Box>
-                            <Box className="time">
-                                {expectedTime}
+                    <Box sx={{ paddingLeft: "10px" }} className="more-info">
+                        <Box className="more-info-detail">
+                            <Box className="title">Thông tin bổ sung</Box>
+                            <Box className="code-supply-order">
+                                <Box className='title'>Mã đơn nhập hàng</Box>
+                                <Box className="info">{codeOrder}</Box>
                             </Box>
-                        </Box>
-                        <Box className="note">
-                            <Box className="title">Ghi chú</Box>
-                            <Box sx={{ paddingLeft: "20px" }}>{description}</Box>
-                        </Box>
+                            <Box className="time-supply-order">
+                                <Box className='title'>Ngày nhận hàng</Box>
+                                <Box className="time">
+                                    {expectedTime}
+                                </Box>
+                            </Box>
+                            <Box className="note">
+                                <Box className="title">Ghi chú</Box>
+                                <Box sx={{ paddingLeft: "20px" }}>{description}</Box>
+                            </Box>
 
+                        </Box>
                     </Box>
                 </Box>
 

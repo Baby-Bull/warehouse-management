@@ -1,3 +1,48 @@
-.highcharts-credits{
+.highcharts-credits {
     display: none;
+}
+.card-index-home {
+    border-radius: 4px !important;
+    padding: 3px !important;
+    width: 23% !important;
+    height: inherit;
+}
+
+@media only screen and (max-width: 500px) {
+    .home-main-content {
+        padding: 1em 0.3em !important;
+    }
+    .cards-index-home {
+        padding: 1em 0 0 1.2em;
+        .card-index-home {
+            border-radius: 4px !important;
+            padding: 3px !important;
+            width: 23% !important;
+            height: inherit;
+        }
+    }
+    .highchart1 {
+        display: flex !important;
+        flex-direction: column-reverse;
+        .grid-highchart1 {
+            display: flex;
+            max-width: 100%;
+            margin-left: 0;
+            margin-bottom: 1em;
+            .item-highchart1-1 {
+                display: flex;
+                flex: 3;
+            }
+            .item-highchart1-2 {
+                height: inherit;
+                flex: 9;
+                ul {
+                    display: flex;
+                }
+            }
+        }
+        .grid-highchart2 {
+            max-width: 100%;
+        }
+    }
 }

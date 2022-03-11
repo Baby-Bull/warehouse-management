@@ -110,3 +110,20 @@
         height: 40px;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .supplierOrder-main-content {
+        padding: 1em 0.3em !important;
+        .filter-search {
+            width: inherit;
+            display: inline-grid;
+            .search {
+                width: 90vw;
+            }
+            .filter {
+                width: 90vw;
+                margin: 1em 0 0 0;
+            }
+        }
+    }
+}

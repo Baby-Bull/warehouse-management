@@ -1,7 +1,33 @@
-.Products {
+.main-updateOrder-content {
+    background-color: #f4f6f8;
+    display: grid;
+    .navig {
+        display: block;
+        .back {
+            display: flex;
+            cursor: pointer;
+            margin-left: 2em;
+            margin-bottom: 1em;
+            &:hover {
+                color: #007bff;
+            }
+        }
+        .time-line {
+            width: 100% !important;
+        }
+        .tag-button{
+            align-items: center;
+            padding: 1em 0;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.product {
     margin-top: 30px;
-    background-color: #FFFFFF;
-    border: 1px solid #e4e4e4 ;
+    background-color: #ffffff;
+    border: 1px solid #e4e4e4;
     border-radius: 5px;
     .title {
         font-weight: 600;
@@ -16,7 +42,7 @@
         justify-content: space-between;
         padding: 5px 20px;
         border: 1px solid #e4e4e4;
-        background-color: #F4F6F8;
+        background-color: #f4f6f8;
         font-weight: 600;
         font-size: 14px;
     }
@@ -26,34 +52,15 @@
             width: 100%;
             min-height: 50px;
             border: 1px solid rgb(192, 192, 192);
-           
+
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
             // align-items: ;
         }
-        .pay-info {
-            width: 300px;
-            // border: 1px solid black;
-            float: right;
-            padding-top: 15px;
-            .pay-info-item {
-                display: flex;
-                justify-content: space-between;
-                height: 30px;
-                padding-right: 10px;
-            }
-            
-            
-        }
-        
     }
 }
 .changeDiscount {
-    // background-color: #FFFFFF;
-    // .MuiOutlinedInput-input {
-    //     padding: 10px 10px;
-    // }
     .MuiTextField-root {
         height: 35px;
         width: 150px;
@@ -66,7 +73,7 @@
 .selectproduct {
     display: flex;
     margin-bottom: 15px;
-    
+
     .info-prod {
         justify-content: space-between;
         width: 100%;
@@ -74,8 +81,8 @@
     .info {
         width: 100%;
         margin-left: 16px;
-   }
-    .selectProduct-info{
+    }
+    .selectProduct-info {
         display: flex;
         flex-direction: row;
         margin-left: 20px;
@@ -87,20 +94,18 @@
         width: 100%;
         margin-right: 20px;
         // height: 30px;
-        .icon-search{   
+        .icon-search {
             margin-left: 10px;
         }
         .selectProductItem {
             width: 95%;
             height: 40px;
             border-radius: 5px;
-            z-index: 1; 
+            z-index: 1;
             .MuiAutocomplete-option {
                 width: 100%;
             }
-            
         }
-
     }
     .btn-more-select {
         color: #000000;
@@ -112,7 +117,6 @@
             border-radius: 0;
             border-color: #e0e0e0;
         }
-       
     }
 }
 .time {
@@ -126,12 +130,11 @@
     }
 }
 .btn-order {
-    position: absolute;
-    width: 250px;
-    right: 40px ;
-    bottom: 20px;
-    float: right;
-    .MuiButton-root {
-        position: absolute;
+    right: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .main-updateOrder-content {
+        padding: 1em 0.3em !important;
     }
 }

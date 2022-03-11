@@ -3,6 +3,7 @@ import Reducer from "./AuthReducer.js"
 
 const INITIAL_STATE = {
     token: JSON.parse(sessionStorage.getItem("token")) || null,
+    isFetching: false,
     error: null
 };
 
@@ -17,6 +18,7 @@ export const ContextProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={{
             token: state.token,
+            isFetching: state.isFetching,
             error: state.error,
             dispatch
         }}>

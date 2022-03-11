@@ -210,11 +210,6 @@ export default function CreateSupplier({ setStateAlert }) {
                     </div>
                 </div>
             </div>
-            {/* <Snackbar open={stateAlert.open} autoHideDuration={3000} onClose={() => setStateAlert({ ...stateAlert, open: false })}>
-                <Alert onClose={() => setStateAlert({ ...stateAlert, open: false })} severity={stateAlert.severity} variant={stateAlert.variant} sx={{ width: '100%' }}>
-                    {stateAlert.content}
-                </Alert>
-            </Snackbar> */}
         </div >
     )
 }
